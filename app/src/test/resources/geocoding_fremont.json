@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Fremont",
+    "local_names": {
+      "zh": "費利蒙",
+      "en": "Fremont",
+      "ru": "Фримонт"
+    },
+    "lat": 37.5482697,
+    "lon": -121.988571,
+    "country": "US",
+    "state": "California"
+  }
+]

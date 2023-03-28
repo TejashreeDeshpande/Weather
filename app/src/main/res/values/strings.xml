@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="enter_city">city / city, state, country</string>
+    <string name="city_not_found">City not found</string>
+    <string name="ok">Ok</string>
+    <string name="get_current_location">Get current location</string>
+    <string name="search">Search</string>
+    <string name="icon">Icon</string>
+    <string name="temperature">%1$s\u00B0</string>
+    <string name="feels_like">Feels like %1$s\u00B0</string>
+    <string name="hi_low_temp">Hi %1$s\u00B0   Low %2$s\u00B0</string>
+    <string name="fahrenheit">\u2109</string>
+    <string name="celsius">\u2103</string>
+    <string name="degrees">\u00B0</string>
+    <string name="city_country">%1$s, %2$s</string>
+</resources>

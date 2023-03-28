@@ -1,0 +1,62 @@
+# WeatherApp
+——————————————————————————————
+Requirement:
+Network is available
+——————————————————————————————
+Available Features:
+
+Displaying current Weather data based on user input. User is recommended to enter the city name in the below format :
+city or city,state,country for ex. Fremont or Fremont,CA,USA
+
+App will perform following steps, after receiving the string data from user :
+
+1. Find the geo location (latitude, longitude) using GeoCoding API 
+Examples :
+https://api.openweathermap.org/geo/1.0/direct?q=Fremont&appid=51645f4c922c86f53879b3525c6ec489
+https://api.openweathermap.org/geo/1.0/direct?q=Fremont,CA,USA&appid=51645f4c922c86f53879b3525c6ec489
+
+2. Call openWeather API, using latitude, longitude (received from Step1) and temperature units (°C or °F) to get weather data. Use “metric” to get temperature in °C and user “imperial” for °F.
+Examples :
+https://api.openweathermap.org/data/2.5/weather?lat=37.54&lon=-121.98&units=metric&appid=51645f4c922c86f53879b3525c6ec489
+https://api.openweathermap.org/data/2.5/weather?lat=32.7223511&lon=-86.07691&units=imperial&appid=51645f4c922c86f53879b3525c6ec489
+
+3. Allow user to change the temperature units to °C or °F from UI. Fetch new weather data when user changes units from the UI.
+
+4. Ask “Location Permission” user and read user’s current location if permission is granted. Display Weather data based on user’s current location by default on app launch.
+
+5. Save “city” and “units” in the SharedPreference. If user denied “location permission” in Step3, use sharedPreference data to fetch the weather for “last searched city” and display default UI after the app launch. 
+
+6. Used Glider library to display weather icons.
+——————————————————————————————
+Android / Kotlin Details 
+
+1. Used MVVM and repository architecture pattern.
+2. Dagger2 for data binding. Added NetworkModule, SharedPreferencesModule for Singleton usage.
+3. ConstraintsLayout for UI
+4. Supports orientation change
+5. Test Cases for WeatherService
+6. Retrofit, GsonConvertor & Coroutines for consuming API 
+——————————————————————————————
+Few Errors from API :
+
+Observed API issues as below :
+
+search text : union city, ca, use
+Geocoding API URL  -  https://api.openweathermap.org/geo/1.0/direct?q=union%20city,ca,us&appid=51645f4c922c86f53879b3525c6ec489
+Response - [{"name":"Union City","lat":37.5963232,"lon":-122.0816297,"country":"US","state":"California"}]
+
+Weather API URL - https://api.openweathermap.org/data/2.5/weather?lat=37.5963232&lon=-122.0816297&units=metric&appid=51645f4c922c86f53879b3525c6ec489
+Response - 
+{"coord":{"lon":-122.0816,"lat":37.5963},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"base":"stations","main":{"temp":10.16,"feels_like":9.01,"temp_min":7.49,"temp_max":12.31,"pressure":1011,"humidity":68},"visibility":10000,"wind":{"speed":12.86,"deg":150,"gust":20.06},"rain":{"1h":0.23},"clouds":{"all":100},"dt":1680024041,"sys":{"type":2,"id":2008634,"country":"US","sunrise":1680011990,"sunset":1680056805},"timezone":-25200,"id":5326526,"name":"Baumberg","cod":200}
+
+API Issue - openweather API is returning city “Baumberg” in the response. It should return “Union city”
+——————————————————————————————
+Future Enhancements:
+
+1. By adding Location change listener, weather data will be continuously updated if user changes the location.
+2. Network change listener, Display proper message if network is not available.
+3. UI enhancements
+4. Add more test cases
+5. Auto populate city names
+6. Data Binding
+——————————————————————————————
